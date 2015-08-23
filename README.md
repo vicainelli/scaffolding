@@ -1,2 +1,3 @@
-# scaffolding
+# Scaffolding
+
 Responsive design scaffolding

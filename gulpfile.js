@@ -6,6 +6,7 @@
 			uglify 			= require('gulp-uglify'),
 			minifycss 	= require('gulp-minify-css'),
 			rename 			= require('gulp-rename'),
+			concat 			= require('gulp-concat'),
 			watch 			= require('gulp-watch');
 
 	// Style
@@ -18,11 +19,26 @@
 			.pipe(gulp.dest('assets/css'));
 	});
 
+
+	// Scritps
+	gulp.task('scritp', function(){
+		return gulp.src([
+				'src/js/confirm.js',
+				'src/js/alert.js'
+			])
+			.pipe(concat('scritps.js'))
+			.pipe(rename({suffix: '.min'}))
+			.pipe(uglify())
+			.pipe(gulp.dest('assets/js'));
+	});
+
+
 	// Watch
 	gulp.task('watch', function() {
 		gulp.watch('src/sass/**/*.scss', ['styles']);
+		gulp.watch('src/js/*.js', ['scritp']);
 	});
 
-	gulp.task('default', ['styles', 'watch']);
+	gulp.task('default', ['styles', 'watch', 'scritp']);
 
 })();

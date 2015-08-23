@@ -1,0 +1,1 @@
+confirm('This is a confirm message!');
